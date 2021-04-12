@@ -1,0 +1,25 @@
+{
+  "name": "cronjob",
+  "version": "1.0.0",
+  "description": "It is a cron job for experience app",
+  "main": "db_connect.js",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "crypto": "^1.0.1",
+    "googleapis": "^52.1.0",
+    "moment": "^2.26.0",
+    "pg": "^8.2.1"
+  },
+  "devDependencies": {
+    "serverless-offline": "^6.4.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.com:echoroastersuper/experienceapp/cronjob.git"
+  },
+  "author": "",
+  "license": "ISC"
+}

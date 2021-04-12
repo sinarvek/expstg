@@ -1,0 +1,44 @@
+service: con-job
+plugins:
+  - serverless-offline
+provider:
+  name: aws
+  region: ap-southeast-1
+  runtime: nodejs12.x
+  timeout: 20 # optional, in seconds, default is 6
+  # vpc for connect to rds
+  vpc:
+    #  need to update the vpc group
+    securityGroupIds:
+      - sg-09c0afca3d9af1ad5 
+    subnetIds:
+      - subnet-0c101da532e81c23d
+      - subnet-0a2ccd8b458e1d2c0
+    VpcId: vpc-0bcd281d30e328784  
+functions:
+  # for update security key for vendor 
+  updateSecurityKey:
+    handler: handler.updateKey
+    events:
+      - schedule:
+          # every sunday 12:15
+          rate: cron(15 00 ? * SUN *)
+          enabled: true
+
+  # release all desk
+  releaseTable:
+    handler: handler.releaseTable
+    events:
+      - schedule:
+          # every day 12:00
+          rate: cron(00 00 * * ? *)
+          enabled: true
+
+  # release all desk
+  checkDoor:
+    handler: handler.deviceAlarm
+    events:
+      - schedule:
+          # every 10 mins 
+          rate: rate(10 minutes)
+          enabled: true
